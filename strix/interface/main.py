@@ -390,6 +390,9 @@ def _bootstrap_scan(args: argparse.Namespace) -> None:
     validate_environment()
     if not args.non_interactive:
         return
+    from strix.llm.warmup import wait_import_warmup
+
+    wait_import_warmup(timeout=15.0)
     try:
         asyncio.run(warm_up_llm(show_model_warning=True))
     except ModelConnectionError as exc:
@@ -425,9 +428,8 @@ def main() -> None:
 
         sys.exit(run_auth(sys.argv[2:]))
 
-    from strix.llm.warmup import start_import_warmup
-
-    start_import_warmup()
+    # from strix.llm.warmup import start_import_warmup
+    # start_import_warmup()
 
     args = parse_arguments()
 

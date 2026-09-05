@@ -80,3 +80,12 @@ def start_import_warmup(modules: tuple[str, ...] = WARMUP_MODULES) -> threading.
         )
         _thread.start()
         return _thread
+
+
+def wait_import_warmup(timeout: float | None = 10.0) -> None:
+    """Wait for the background import warm-up thread to finish, avoiding import races."""
+    with _lock:
+        t = _thread
+    if t is not None and t.is_alive():
+        t.join(timeout=timeout)
+

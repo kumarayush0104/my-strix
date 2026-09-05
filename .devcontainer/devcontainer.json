@@ -1,13 +1,6 @@
 {
-  "name": "Strix AI Pentesting Environment",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest",
-      "moby": false,
-      "enableNonRootDocker": "true"
-    }
-  },
+  "name": "Strix AI Pentest",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
   "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sudo env UV_INSTALL_DIR=\"/usr/local/bin\" sh && uv sync",
   "forwardPorts": [8000]
 }
